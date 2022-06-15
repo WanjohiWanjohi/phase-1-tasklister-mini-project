@@ -3,7 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
   // your code here
   document.querySelector('form').addEventListener('submit', (e) => {
     e.preventDefault();
-    handleToDo(e.target.new_task_description.value);
+    const form_data = {item:e.target.new_task_description, 
+                        due_date: e.target.new_task_due_date}
+    handleToDo(form_data);
   })
 
 });
@@ -13,7 +15,7 @@ function handleToDo(todo) {
   let li = document.createElement("li");
   document.querySelector("#tasks").appendChild(li);
 
-  li.appendChild(document.createTextNode(todo));
+  li.appendChild(document.createTextNode(todo.item.value +"    "+ todo.due_date.value));
   var button = document.createElement("button");
   button.addEventListener('click' , deleteToDo);
   button.setAttribute("id", "delete_todo");
